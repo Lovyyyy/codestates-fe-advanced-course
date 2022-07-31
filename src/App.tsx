@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { Routes, Route } from "react-router-dom";
+import Router from "./componenet/router";
 
 interface postsDataInterface {
   body: string;
@@ -11,21 +10,9 @@ interface postsDataInterface {
 function App() {
   const [postData, setPostData] = useState<postsDataInterface[]>();
 
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => {
-        console.log(res.data);
-        setPostData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  console.log(postData);
-
   return (
     <div>
-      <h1>HELLO MY LOVE!</h1>
+      <Router />
     </div>
   );
 }
