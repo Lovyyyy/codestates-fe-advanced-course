@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./Main";
-import Post from "./Post";
+import Comment from "./Comment";
+import Main from "../Page/Main";
+import Post from "../Page/Post";
 
 const Router = () => {
   return (
@@ -8,8 +9,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/:postId" element={<Post />}>
-          {/* <Route path="chart" element={<Comment />} /> */}
-          {/* <Route path="price" element={<Price />} /> */}
+          <Route path="price" element={<Comment />} />
         </Route>
       </Routes>
     </BrowserRouter>
