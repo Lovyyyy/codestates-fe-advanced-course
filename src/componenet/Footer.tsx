@@ -1,4 +1,3 @@
-import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 
 const Footer = () => {

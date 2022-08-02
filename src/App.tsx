@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Footer from "./componenet/Footer";
-import Router from "./componenet/router";
+import Router from "./router";
 import { darkTheme } from "./theme";
 
 const Globalstyle = createGlobalStyle`
@@ -81,6 +81,7 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
+      <button>Toggle</button>
       <Globalstyle />
       <Router />
       <Footer />
