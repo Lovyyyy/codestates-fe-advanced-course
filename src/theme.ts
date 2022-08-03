@@ -5,4 +5,5 @@ export const darkTheme: DefaultTheme = {
   bgColor: "black",
   hoverColor: "grey",
   accentColor: "aqua",
+  lineColor: "lightgrey",
 };

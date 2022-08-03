@@ -70,15 +70,7 @@ a {
 }
 `;
 
-interface postsDataInterface {
-  body: string;
-  id: number;
-  title: string;
-  userId: number;
-}
 function App() {
-  const [postData, setPostData] = useState<postsDataInterface[]>();
-
   return (
     <ThemeProvider theme={darkTheme}>
       <button>Toggle</button>

@@ -13,7 +13,8 @@ export interface PostInterface {
 }
 
 const Router = () => {
-  const [posts, setPosts] = useState<PostInterface[]>();
+  const [posts, setPosts] = useState<PostInterface[]>([]);
+
   const onLoadPost = () => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts/")
@@ -26,6 +27,8 @@ const Router = () => {
 
   useEffect(() => {
     onLoadPost();
+    console.log(posts);
+    console.log(posts);
   }, []);
 
   return (
@@ -39,3 +42,13 @@ const Router = () => {
 };
 
 export default Router;
+
+/*
+
+post는 배열이며, 내부 엘리먼트들은 객체의 형태를 띄고 있다.
+
+
+
+
+
+*/
