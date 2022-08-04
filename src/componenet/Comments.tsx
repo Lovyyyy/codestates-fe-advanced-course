@@ -1,22 +1,15 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { CommentInterface } from "../router";
 
-interface CommentInterface {
-  body: string;
-  email: string;
-  id: number;
-  name: string;
-  postId: number;
+export interface CommentPropsInterface {
+  comments: CommentInterface[];
 }
 
-const CommentBox = styled.div`
-  border: 1px solid red;
+const CommentBox = styled.article`
   padding: 10px;
 
   article {
-    border: 1px solid blue;
   }
   div:nth-child(1) {
     margin: 5px;
@@ -24,26 +17,14 @@ const CommentBox = styled.div`
   }
 `;
 
-const Comments = () => {
+const Comments = ({ comments }: CommentPropsInterface) => {
   const { postId } = useParams();
-  const [comment, setComment] = useState<CommentInterface[]>();
-
-  const onLoadComment = () => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
-      .then((res: AxiosResponse) => setComment(res.data))
-      .catch((err: AxiosError) => {});
-  };
-
-  useEffect(() => {
-    onLoadComment();
-  }, []);
+  const comment = comments.filter((comment) => comment.postId === Number(postId));
 
   return (
     <CommentBox>
-      COMMENT
       {comment?.map((comment) => (
-        <article>
+        <article key={comment.id}>
           <div>{comment.name}</div> <div> {comment.body}</div>
         </article>
       ))}

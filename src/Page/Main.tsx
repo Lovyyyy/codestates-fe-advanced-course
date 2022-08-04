@@ -1,16 +1,16 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Pagenation from "../componenet/Pagenation";
 import Search from "../componenet/Search";
 import { PostInterface } from "../router";
 
-export interface PropsInterface {
+interface MainPropsInterface {
   posts: PostInterface[];
 }
 
 const Title = styled.h1`
-  /* font-size: 3rem; */
+  font-size: 3rem;
   font-weight: bold;
   color: aqua;
   text-align: center;
@@ -45,6 +45,9 @@ const Board = styled.div`
       flex-grow: 3;
       padding: 0 15px 0 15px;
       width: 40vw;
+      a {
+        display: block;
+      }
       &:hover {
         background-color: ${(props) => props.theme.hoverColor};
       }
@@ -58,14 +61,18 @@ const Board = styled.div`
 
 const BoardTitle = styled(Board)`
   line-height: 40px;
-
   border-bottom: 3px double ${(props) => props.theme.lineColor};
 `;
-const Main = ({ posts }: PropsInterface) => {
+const Main = ({ posts }: MainPropsInterface) => {
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const numChanger = (page - 1) * limit;
+  const postNumber = posts.length;
+
   return (
     <>
       <div>
-        <Title>HELLO MY LOVE!</Title>
+        <Title>HELLO WORLD!</Title>
       </div>
       <BoardTitle>
         <div>
@@ -75,7 +82,7 @@ const Main = ({ posts }: PropsInterface) => {
         </div>
       </BoardTitle>
       <Board>
-        {posts?.map((post: any) => (
+        {posts?.slice(numChanger, numChanger + limit).map((post: any) => (
           <div key={post.id}>
             <span> {post.id} </span>
             <span>
@@ -88,8 +95,19 @@ const Main = ({ posts }: PropsInterface) => {
         ))}
       </Board>
       <Search />
+      <Pagenation postNumber={postNumber} limit={limit} page={page} setPage={setPage} />
     </>
   );
 };
 
 export default Main;
+
+/*
+
+
+slice 메서드를 통해서 잘라 내기를 할 수 있다. 
+그렇다면 잘라내는 값을 구해야겠네요 
+
+그리고 버튼을 누를때 그 값들이 업데이트가 되게 해줘야 하네.
+
+*/

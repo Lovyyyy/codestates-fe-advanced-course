@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Comments from "./componenet/Comments";
+
 import Main from "./Page/Main";
 import Post from "./Page/Posts";
 
@@ -12,32 +12,56 @@ export interface PostInterface {
   userId: number;
 }
 
+export interface CommentInterface {
+  body: string;
+  email: string;
+  id: number;
+  name: string;
+  postId: number;
+}
+
 const Router = () => {
   const [posts, setPosts] = useState<PostInterface[]>([]);
+  const [comments, setComments] = useState<CommentInterface[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const onLoadPost = () => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts/")
       .then((res: AxiosResponse) => {
-        console.log(res);
         setPosts(res.data);
+        setLoading((boolean) => !boolean);
+      })
+      .catch((err: AxiosError) => {});
+  };
+
+  const onLoadComment = () => {
+    axios
+      .get(`https://jsonplaceholder.typicode.com/comments`)
+      .then((res: AxiosResponse) => {
+        setComments(res.data);
       })
       .catch((err: AxiosError) => {});
   };
 
   useEffect(() => {
+    onLoadComment();
     onLoadPost();
-    console.log(posts);
-    console.log(posts);
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main posts={posts} />} />
-        <Route path="/posts/:postId" element={<Post posts={posts} />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      {loading ? (
+        <div>Loading . . .</div>
+      ) : (
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Main posts={posts} />} />
+            <Route path="/posts/:postId" element={<Post posts={posts} comments={comments} />} />
+          </Routes>
+        </BrowserRouter>
+      )}
+    </>
   );
 };
 

@@ -1,15 +1,15 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
+import React, { useState } from "react";
 
 const Form = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-bottom: 10px;
-  position: absolute;
+  position: relative;
   width: 100%;
-  bottom: 4%;
+
   select {
     margin: 0 10px 0 0;
   }
@@ -27,6 +27,7 @@ const Form = styled.form`
 `;
 
 const Search = () => {
+  const [keyword, setKeyword] = useState("");
   return (
     <div>
       <Form onSubmit={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}>
@@ -35,7 +36,12 @@ const Search = () => {
           <option value="제목">제목</option>
         </select>
         <div>
-          <input onChange={() => {}} placeholder="검색어를 입력하세요" />
+          <input
+            onChange={(e: React.FormEvent<HTMLInputElement>) => {
+              setKeyword(String(e));
+            }}
+            placeholder="검색어를 입력하세요"
+          />
           <BsSearch />
         </div>
       </Form>

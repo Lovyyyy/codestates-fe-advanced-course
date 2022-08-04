@@ -8,9 +8,8 @@ const Footer = () => {
     align-items: center;
     width: 100%;
     /* background-color: red; */
-    position: absolute;
+    position: relative;
     margin-bottom: 20px;
-    bottom: 0;
 
     /* transform: translateY(-100%); */
     div {
