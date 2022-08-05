@@ -9,9 +9,8 @@ const Footer = () => {
     width: 100%;
     /* background-color: red; */
     position: relative;
-    margin-bottom: 20px;
+    margin-top: -40px;
 
-    /* transform: translateY(-100%); */
     div {
       margin: 0 20px 0 20px;
       font-size: 11px;

@@ -8,12 +8,20 @@ export interface CommentPropsInterface {
 
 const CommentBox = styled.article`
   padding: 10px;
+  border-top: 1px solid ${(props) => props.theme.lineColor};
+  position: absolute;
+  bottom: 10%;
 
-  article {
+  .title {
+    color: ${(props) => props.theme.hoverColor};
   }
-  div:nth-child(1) {
-    margin: 5px;
+  .name {
+    margin: 20px 0 5px 0px;
     color: ${(props) => props.theme.accentColor};
+  }
+  .body {
+    padding-bottom: 20px;
+    border-bottom: 1px solid ${(props) => props.theme.lineColor};
   }
 `;
 
@@ -23,9 +31,10 @@ const Comments = ({ comments }: CommentPropsInterface) => {
 
   return (
     <CommentBox>
+      <span className="title">Comments[{comment.length}]</span>
       {comment?.map((comment) => (
         <article key={comment.id}>
-          <div>{comment.name}</div> <div> {comment.body}</div>
+          <div className="name">{comment.name}</div> <div className="body"> {comment.body}</div>
         </article>
       ))}
     </CommentBox>

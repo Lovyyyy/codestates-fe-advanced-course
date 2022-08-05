@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
 
 import Main from "./Page/Main";
 import Post from "./Page/Posts";
@@ -19,6 +20,11 @@ export interface CommentInterface {
   name: string;
   postId: number;
 }
+
+const Wrapper = styled.div`
+  height: 100vh;
+  width: 100vw;
+`;
 
 const Router = () => {
   const [posts, setPosts] = useState<PostInterface[]>([]);
@@ -54,12 +60,14 @@ const Router = () => {
       {loading ? (
         <div>Loading . . .</div>
       ) : (
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Main posts={posts} />} />
-            <Route path="/posts/:postId" element={<Post posts={posts} comments={comments} />} />
-          </Routes>
-        </BrowserRouter>
+        <Wrapper>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Main posts={posts} setPosts={setPosts} />} />
+              <Route path="/posts/:postId" element={<Post posts={posts} comments={comments} />} />
+            </Routes>
+          </BrowserRouter>
+        </Wrapper>
       )}
     </>
   );

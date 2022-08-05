@@ -7,5 +7,6 @@ declare module "styled-components" {
     hoverColor: string;
     accentColor: string;
     lineColor: string;
+    toggleColor: string;
   }
 }

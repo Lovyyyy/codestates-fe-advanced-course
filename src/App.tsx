@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import Footer from "./componenet/Footer";
+import { Toggle } from "./componenet/Toggle";
 import Router from "./router";
-import { darkTheme } from "./theme";
+import { darkTheme, lightTheme } from "./theme";
 
 const Globalstyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -27,6 +28,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  overflow: hidden;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -60,7 +62,6 @@ table {
 }
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  // 가지고 온 폰트 적용 /  폰트 출력 불가시 대체 폰트 설정 
   background-color:${(props) => props.theme.bgColor};
   color:${(props) => props.theme.textColor}
 }
@@ -71,10 +72,11 @@ a {
 `;
 
 function App() {
+  const [theme, setTheme] = useState(true);
   return (
-    <ThemeProvider theme={darkTheme}>
-      <button>Toggle</button>
+    <ThemeProvider theme={theme ? darkTheme : lightTheme}>
       <Globalstyle />
+      <Toggle setTheme={setTheme} />
       <Router />
       <Footer />
     </ThemeProvider>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { MainPropsInterface } from "../Page/Main";
 
 const Form = styled.form`
   display: flex;
@@ -18,16 +19,39 @@ const Form = styled.form`
     padding: 0 5px 0 3px;
     line-height: 100%;
     align-items: center;
-    border: 1px solid;
+    border: 1px solid ${(props) => props.theme.textColor};
+
     input {
       margin: 3px;
       border: 1px solid grey;
     }
+    button {
+      background: none;
+      border: none;
+      color: ${(props) => props.theme.textColor};
+
+      &:active {
+        position: relative;
+        top: 1px;
+      }
+    }
   }
 `;
 
-const Search = () => {
+const Search = ({ posts, setPosts }: MainPropsInterface) => {
   const [keyword, setKeyword] = useState("");
+  const [input, setInput] = useState("");
+
+  useEffect(() => {
+    console.log(input);
+  }, []);
+
+  const searchUserId = posts.filter(({ userId, title }) => userId === Number(input));
+
+  const filteringPost = () => {
+    setPosts(searchUserId);
+  };
+
   return (
     <div>
       <Form onSubmit={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}>
@@ -37,12 +61,14 @@ const Search = () => {
         </select>
         <div>
           <input
-            onChange={(e: React.FormEvent<HTMLInputElement>) => {
-              setKeyword(String(e));
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setInput(e.target.value);
             }}
             placeholder="검색어를 입력하세요"
           />
-          <BsSearch />
+          <button type="button" onClick={filteringPost}>
+            <BsSearch />
+          </button>
         </div>
       </Form>
     </div>
@@ -51,5 +77,16 @@ const Search = () => {
 
 export default Search;
 
-// 검색에는 글제목 검색과 글쓴이로 검색을 하는 기능을 만들기
-// 검색창에는 option을 통해서 글쓴이
+/*
+
+최초 1번의 검색은 되나, 이후 검색은 작동하지 않음
+왜 그럴까? 
+
+현재 코드대로 posts 를 setPosts로 상태를 변경하는 경우 
+posts가 검색 키워드로 검색 된 상태의 것들로만 남기 때문에
+다시 검색했을때는 검색이 불가능한 상황이 발생한다.
+
+음~ 그럼 이건 어떻게 처리를 해줘야 할까 ? 
+
+
+*/
