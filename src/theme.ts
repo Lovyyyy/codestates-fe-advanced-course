@@ -11,7 +11,7 @@ export const darkTheme: DefaultTheme = {
 
 export const lightTheme: DefaultTheme = {
   textColor: "black",
-  bgColor: "white",
+  bgColor: "ivory",
   hoverColor: "grey",
   accentColor: "blue",
   lineColor: "darkgrey",

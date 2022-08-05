@@ -10,7 +10,7 @@ const CommentBox = styled.article`
   padding: 10px;
   border-top: 1px solid ${(props) => props.theme.lineColor};
   position: absolute;
-  bottom: 10%;
+  bottom: 12%;
 
   .title {
     color: ${(props) => props.theme.hoverColor};

@@ -39,17 +39,15 @@ const Form = styled.form`
 `;
 
 const Search = ({ posts, setPosts }: MainPropsInterface) => {
-  const [keyword, setKeyword] = useState("");
+  // const [keyword, setKeyword] = useState("");
   const [input, setInput] = useState("");
 
   useEffect(() => {
     console.log(input);
   }, []);
 
-  const searchUserId = posts.filter(({ userId, title }) => userId === Number(input));
-
   const filteringPost = () => {
-    setPosts(searchUserId);
+    setPosts((posts) => posts.slice(0).filter(({ userId, title }) => userId === Number(input)));
   };
 
   return (
@@ -85,6 +83,8 @@ export default Search;
 현재 코드대로 posts 를 setPosts로 상태를 변경하는 경우 
 posts가 검색 키워드로 검색 된 상태의 것들로만 남기 때문에
 다시 검색했을때는 검색이 불가능한 상황이 발생한다.
+
+posts의 불변성을 유지하면서, 데이터를 필터링 한 새로운 배열을 세팅 해줘야 한다. 
 
 음~ 그럼 이건 어떻게 처리를 해줘야 할까 ? 
 

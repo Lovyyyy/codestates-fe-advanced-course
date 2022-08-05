@@ -1,7 +1,5 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
-import React, { Dispatch, ReactHTMLElement, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styled from "styled-components";
-import { PostInterface } from "../router";
 
 interface PagenationInterface {
   postNumber: number;
@@ -22,7 +20,8 @@ const Wrapper = styled.div`
     border: none;
 
     &:hover {
-      color: red;
+      background-color: ${(props) => props.theme.hoverColor};
+      color: ${(props) => props.theme.accentColor};
     }
   }
 `;

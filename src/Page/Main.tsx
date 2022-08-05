@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Pagenation from "../componenet/Pagenation";
@@ -19,7 +19,7 @@ const Title = styled.h1`
 
   padding: 20px;
 `;
-const Board = styled.div`
+const Board = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -27,7 +27,7 @@ const Board = styled.div`
   text-align: center;
   height: 70vh;
 
-  div {
+  .category {
     display: flex;
     flex-direction: row;
     color: ${(props) => props.theme.textColor};
@@ -52,6 +52,7 @@ const Board = styled.div`
       a {
         display: block;
         &:hover {
+          color: ${(props) => props.theme.accentColor};
           background-color: ${(props) => props.theme.hoverColor};
         }
       }
@@ -76,11 +77,10 @@ const Main = ({ posts, setPosts }: MainPropsInterface) => {
 
   return (
     <>
-      <div>
-        <Title>HELLO WORLD!</Title>
-      </div>
+      <Title>HELLO WORLD!</Title>
+
       <BoardTitle>
-        <div>
+        <div className="category">
           <span className="id">번호</span>
           <span className="title">제목</span>
           <span className="userId">작성자</span>
@@ -88,7 +88,7 @@ const Main = ({ posts, setPosts }: MainPropsInterface) => {
       </BoardTitle>
       <Board>
         {posts?.slice(numChanger, numChanger + limit).map((post: any) => (
-          <div key={post.id}>
+          <li className="category" key={post.id}>
             <span className="id"> {post.id} </span>
             <span className="title">
               <Link to={`/posts/${post.id}`} state={post}>
@@ -96,7 +96,7 @@ const Main = ({ posts, setPosts }: MainPropsInterface) => {
               </Link>
             </span>
             <span className="userId"> {post.userId} </span>
-          </div>
+          </li>
         ))}
       </Board>
       <Search posts={posts} setPosts={setPosts} />

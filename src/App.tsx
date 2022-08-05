@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import { useState } from "react";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Footer from "./componenet/Footer";
 import { Toggle } from "./componenet/Toggle";
 import Router from "./router";
@@ -72,11 +72,11 @@ a {
 `;
 
 function App() {
-  const [theme, setTheme] = useState(true);
+  const [isDarkTheme, setisDarkTheme] = useState(true);
   return (
-    <ThemeProvider theme={theme ? darkTheme : lightTheme}>
+    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <Globalstyle />
-      <Toggle setTheme={setTheme} />
+      <Toggle setisDarkTheme={setisDarkTheme} />
       <Router />
       <Footer />
     </ThemeProvider>

@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
-import { BsMoon, BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 
 interface ToggleInterface {
-  setTheme: Dispatch<SetStateAction<boolean>>;
+  setisDarkTheme: Dispatch<SetStateAction<boolean>>;
 }
 
 const ToggleContainer = styled.div`
@@ -49,7 +49,7 @@ const ToggleContainer = styled.div`
   }
 `;
 
-export const Toggle = ({ setTheme }: ToggleInterface) => {
+export const Toggle = ({ setisDarkTheme }: ToggleInterface) => {
   const [isOn, setisOn] = useState(false);
 
   const toggleHandler = () => {
@@ -61,7 +61,7 @@ export const Toggle = ({ setTheme }: ToggleInterface) => {
       <ToggleContainer
         onClick={() => {
           toggleHandler();
-          setTheme((boolean) => !boolean);
+          setisDarkTheme((boolean) => !boolean);
         }}
       >
         <div className={`toggle-container ${isOn ? "checked" : ""}`}>
