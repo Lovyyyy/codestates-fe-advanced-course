@@ -24,8 +24,8 @@
 > 게시물 상세 페이지  
 > 게시물 상세 페이지 내 Comment  
 > 페이지네이션  
-> Toggle 버튼을 Dark / Light 테마 변경 방식
-
+> Toggle 버튼을 Dark / Light 테마 변경 방식   
+> ~~Search 기능~~
 ---
 
 > - 구현 방법 및 구현 시 어려웠던 점
