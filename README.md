@@ -1,5 +1,8 @@
 > - 완성된 GIF 파일 및 배포 링크
 >
+
+![Peek 2022-08-05 22-30](https://user-images.githubusercontent.com/89245198/183087655-28a7d943-8d08-4077-928b-bd1e1d8c93f2.gif)
+
 > - 배포 링크 : http://codestates-fe-advanced-course-preproject.s3-website.ap-northeast-2.amazonaws.com/
 
 ---
